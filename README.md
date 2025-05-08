@@ -10,10 +10,22 @@ go-acme-events/
 |   |   |-- model.go
 |   |-- service.go
 |   |-- configuration.go
+|
 |-- ports/
 |   |-- provider.go
 |   |-- repository.go
-|   
+|
+|-- adapters/
+|   |-- xxx-provider/
+|   |   |-- model.go
+|   |   |-- provider.go
+|   |   |-- configuration.go
+|   |
+|   |-- mongodb-respository/
+|       |-- model.go
+|       |-- repository.go
+|       |-- configuration.go
+|
 |-- go.mod
 ```
 ## Logic business description
