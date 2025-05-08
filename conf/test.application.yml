@@ -1,0 +1,13 @@
+app.time-to-feed: 10s #seconds
+
+provider:
+  name: xxx
+  url: https://xxx-provider.com/events
+  timeout: 2000ms #milliseconds
+
+mongodb:
+  database.name: AcmeDataBase
+  port: 27018
+  uri: mongodb://localhost:${mongodb.port}
+
+server.port: 8090
