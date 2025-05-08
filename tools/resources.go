@@ -2,6 +2,7 @@ package tools
 
 import (
 	"encoding/json"
+	"encoding/xml"
 	"github.com/mblanco/Go-Acme-events/errors"
 	"gopkg.in/yaml.v3"
 	"io"
@@ -9,18 +10,18 @@ import (
 )
 
 func LoadJsonConfiguration(fileName string, configObj interface{}) {
-	bts := loadFile(fileName)
+	bts := LoadFile(fileName)
 	err := json.Unmarshal(bts, configObj)
 	errors.ManageErrorPanic(err)
 }
 
 func LoadYamlConfiguration(fileName string, configObj interface{}) {
-	bts := loadFile(fileName)
+	bts := LoadFile(fileName)
 	err := yaml.Unmarshal(bts, configObj)
 	errors.ManageErrorPanic(err)
 }
 
-func loadFile(file string) []byte {
+func LoadFile(file string) []byte {
 	confFile, err := os.Open(file)
 	errors.ManageErrorPanic(err)
 	defer func() {
@@ -31,4 +32,9 @@ func loadFile(file string) []byte {
 	bts, err := io.ReadAll(confFile)
 	errors.ManageErrorPanic(err)
 	return bts
+}
+
+func UnmarshalXmlResource(file string, v interface{}) error {
+	bts := LoadFile(file)
+	return xml.Unmarshal(bts, v)
 }

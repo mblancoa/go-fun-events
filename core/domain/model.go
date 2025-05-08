@@ -6,12 +6,12 @@ import (
 )
 
 type Event struct {
-	Id         uuid.UUID
-	ProvId     string
-	title      string
-	OnlineSale bool
-	StartsAt   time.Time
-	EndsAt     time.Time
-	MaxPrice   float32
-	MinPrice   float32
+	Id           uuid.UUID
+	ProvId       string
+	Title        string
+	IsOnlineSale bool
+	StartsAt     time.Time
+	EndsAt       time.Time
+	MaxPrice     float64
+	MinPrice     float64
 }
