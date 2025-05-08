@@ -86,3 +86,12 @@ func TestMapProviderResponseToEventList_doesNotMapWhenPlansIsEmpty(t *testing.T)
 	assert.Nil(t, err)
 	assert.Empty(t, eventsA)
 }
+
+func TestMapProviderResponseToEventList_doesNotMapWhenPlansIsNil(t *testing.T) {
+	rsp := &ProviderResponse{Output: Output{BasePlans: []BasePlan{{SellMode: "online"}}}}
+
+	eventsA, err := MapProviderResponseToEventList(rsp, providerName)
+
+	assert.Nil(t, err)
+	assert.Empty(t, eventsA)
+}

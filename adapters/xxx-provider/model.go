@@ -60,36 +60,40 @@ func MapProviderResponseToEventList(response *ProviderResponse, providerName str
 	if reflect.DeepEqual(response.Output, Output{}) {
 		return []*domain.Event{}, nil
 	}
-
+	if response.Output.BasePlans == nil {
+		return []*domain.Event{}, nil
+	}
 	var eventsA []*domain.Event
 	for _, basePlan := range response.Output.BasePlans {
-		for _, plan := range basePlan.Plans {
-			event := &domain.Event{}
-			event.ProvId = fmt.Sprintf(ProviderIdPattern, providerName, basePlan.BasePlanID, plan.PlanID)
-			event.Title = basePlan.Title
-			event.IsOnlineSale = "online" == basePlan.SellMode
-			startsAt, err := time.Parse(DateTimeLayout, plan.PlanStartDate)
-			if err != nil {
-				return []*domain.Event{}, errors.NewGenericError("Error mapping event: " + err.Error())
-			}
-			event.StartsAt = startsAt
-			endsAt, err := time.Parse(DateTimeLayout, plan.PlanEndDate)
-			if err != nil {
-				return []*domain.Event{}, errors.NewGenericError("Error mapping event: " + err.Error())
-			}
-			event.EndsAt = endsAt
-			if plan.Zones != nil && len(plan.Zones) != 0 {
-				event.MinPrice = math.MaxFloat64
-				for _, zone := range plan.Zones {
-					if zone.Price < event.MinPrice {
-						event.MinPrice = zone.Price
-					}
-					if zone.Price > event.MaxPrice {
-						event.MaxPrice = zone.Price
+		if basePlan.Plans != nil {
+			for _, plan := range basePlan.Plans {
+				event := &domain.Event{}
+				event.ProvId = fmt.Sprintf(ProviderIdPattern, providerName, basePlan.BasePlanID, plan.PlanID)
+				event.Title = basePlan.Title
+				event.IsOnlineSale = "online" == basePlan.SellMode
+				startsAt, err := time.Parse(DateTimeLayout, plan.PlanStartDate)
+				if err != nil {
+					return []*domain.Event{}, errors.NewGenericError("Error mapping event: " + err.Error())
+				}
+				event.StartsAt = startsAt
+				endsAt, err := time.Parse(DateTimeLayout, plan.PlanEndDate)
+				if err != nil {
+					return []*domain.Event{}, errors.NewGenericError("Error mapping event: " + err.Error())
+				}
+				event.EndsAt = endsAt
+				if plan.Zones != nil && len(plan.Zones) != 0 {
+					event.MinPrice = math.MaxFloat64
+					for _, zone := range plan.Zones {
+						if zone.Price < event.MinPrice {
+							event.MinPrice = zone.Price
+						}
+						if zone.Price > event.MaxPrice {
+							event.MaxPrice = zone.Price
+						}
 					}
 				}
+				eventsA = append(eventsA, event)
 			}
-			eventsA = append(eventsA, event)
 		}
 	}
 
