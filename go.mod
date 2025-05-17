@@ -1,4 +1,4 @@
-module github.com/mblanco/Go-Acme-events
+module github.com/mblanco/go-fun-events
 
 go 1.22.4
 

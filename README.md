@@ -1,10 +1,10 @@
-# Go Acme Events
+# Go Fun Events
 
 ## Project structure
-Go Acme Events is implemented by  a hexagonal architecture and this is its distribution:
+Go Fun Events is implemented by  a hexagonal architecture and this is its distribution:
 
 ```
-go-acme-events/
+go-fun-events/
 |-- core/
 |   |-- domain
 |   |   |-- model.go
@@ -58,4 +58,3 @@ Generation: `make clean mocks`
 - 2- Execute `make build` to build the package
 - 3- Execute `make deploy`to run the application with docker-compose
 
-## Other considerations
