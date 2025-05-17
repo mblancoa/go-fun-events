@@ -6,9 +6,9 @@ Go Fun Events is implemented by  a hexagonal architecture and this is its distri
 ```
 go-fun-events/
 |-- core/
-|   |-- domain
-|   |   |-- model.go
-|   |-- service.go
+|   |-- events.go
+|   |-- supply.go
+|   |-- ports.go
 |   |-- configuration.go
 |
 |-- ports/
@@ -29,9 +29,7 @@ go-fun-events/
 |-- go.mod
 ```
 ## Business logic description
-
-When the method GetEvents is called, its retrieves the events from a repository where they are persisted. The repository must be fed frequently, so that, from time to time, the service calls to the provider to get updated events.  
-The frequent which the provider is called is determined by the property timeToFeed. The provider is called when the time from the last time has passed, and the block of code responsible of the call is locked and the parallel threads skip it.
+TODO
 
 ## How to run it
 ...

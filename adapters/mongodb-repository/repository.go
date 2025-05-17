@@ -3,9 +3,8 @@ package mongodb_repository
 import (
 	"context"
 	"github.com/google/uuid"
-	"github.com/mblanco/Go-Acme-events/core/domain"
-	"github.com/mblanco/Go-Acme-events/core/ports"
-	"github.com/mblanco/Go-Acme-events/errors"
+	"github.com/mblanco/go-fun-events/core"
+	"github.com/mblanco/go-fun-events/errors"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"time"
@@ -23,26 +22,26 @@ type eventRepository struct {
 	delegate   MongoDbEventRepository
 }
 
-func NewEventRepository(collection *mongo.Collection) ports.EventRepository {
+func NewEventRepository(collection *mongo.Collection) core.EventRepository {
 	return &eventRepository{
 		collection: collection,
 		delegate:   NewMongoDbEventRepository(collection),
 	}
 }
 
-func (m *eventRepository) FindByStartAfterAndEndBefore(from, to time.Time) ([]*domain.Event, error) {
+func (m *eventRepository) FindByStartAfterAndEndBefore(from, to time.Time) ([]*core.Event, error) {
 	dbArray, err := m.delegate.FindByStartsAtGreaterThanEqualAndEndsAtLessThanEqual(context.Background(), from, to)
 	if err != nil {
-		return []*domain.Event{}, err
+		return []*core.Event{}, err
 	}
 	events, err := MapToEventArray(dbArray)
 	if err != nil {
-		return []*domain.Event{}, err
+		return []*core.Event{}, err
 	}
 	return events, nil
 }
 
-func (m *eventRepository) Update(toUpdate []*domain.Event) error {
+func (m *eventRepository) Update(toUpdate []*core.Event) error {
 	errorList := ""
 	for _, event := range toUpdate {
 		_, err := m.updateMinPriceAndMaxPrice(context.Background(), event)
@@ -56,7 +55,7 @@ func (m *eventRepository) Update(toUpdate []*domain.Event) error {
 	return nil
 }
 
-func (m *eventRepository) InsertOrUpdate(toInsert []*domain.Event) error {
+func (m *eventRepository) InsertOrUpdate(toInsert []*core.Event) error {
 	errorList := ""
 	for _, event := range toInsert {
 		ok, err := m.updateMinPriceAndMaxPrice(context.Background(), event)
@@ -87,7 +86,7 @@ func (m *eventRepository) InsertOrUpdate(toInsert []*domain.Event) error {
 	return nil
 }
 
-func (m *eventRepository) updateMinPriceAndMaxPrice(ctx context.Context, event *domain.Event) (bool, error) {
+func (m *eventRepository) updateMinPriceAndMaxPrice(ctx context.Context, event *core.Event) (bool, error) {
 	filter := bson.M{"prov_id": event.ProvId}
 	update := bson.D{
 		{"$min", bson.D{{"min_price", event.MinPrice}}},

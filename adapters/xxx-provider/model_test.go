@@ -1,7 +1,7 @@
 package xxx_provider
 
 import (
-	"github.com/mblanco/Go-Acme-events/tools"
+	"github.com/mblanco/go-fun-events/tools"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

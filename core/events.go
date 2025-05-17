@@ -1,21 +1,31 @@
 package core
 
 import (
-	"github.com/mblanco/Go-Acme-events/core/domain"
-	"github.com/mblanco/Go-Acme-events/core/ports"
+	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 	"sync"
 	"time"
 )
 
+type Event struct {
+	Id           uuid.UUID
+	ProvId       string
+	Title        string
+	IsOnlineSale bool
+	StartsAt     time.Time
+	EndsAt       time.Time
+	MaxPrice     float64
+	MinPrice     float64
+}
+
 type EventService interface {
-	GetEvents(startsAt, endsAt time.Time) ([]*domain.Event, error)
+	GetEvents(startsAt, endsAt time.Time) ([]*Event, error)
 }
 
 func NewEventService(
 	timeToFeed time.Duration,
-	eventRepository ports.EventRepository,
-	eventProvider ports.EventProvider,
+	eventRepository EventRepository,
+	eventProvider EventProvider,
 ) EventService {
 	eventService := eventService{
 		timeToFeed:      timeToFeed,
@@ -30,11 +40,11 @@ type eventService struct {
 	locker       *sync.Mutex
 
 	timeToFeed      time.Duration
-	eventRepository ports.EventRepository
-	eventProvider   ports.EventProvider
+	eventRepository EventRepository
+	eventProvider   EventProvider
 }
 
-func (e *eventService) GetEvents(startsAt, endsAt time.Time) ([]*domain.Event, error) {
+func (e *eventService) GetEvents(startsAt, endsAt time.Time) ([]*Event, error) {
 	e.updateEventsSynchronously()
 	return e.eventRepository.FindByStartAfterAndEndBefore(startsAt, endsAt)
 }
@@ -54,8 +64,8 @@ func (e *eventService) updateEvents() {
 			return
 		}
 		if events != nil && len(events) != 0 {
-			var onlineEvents []*domain.Event
-			var restEvents []*domain.Event
+			var onlineEvents []*Event
+			var restEvents []*Event
 			for _, event := range events {
 				if event.IsOnlineSale {
 					onlineEvents = append(onlineEvents, event)

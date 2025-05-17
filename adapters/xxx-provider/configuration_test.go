@@ -1,9 +1,8 @@
 package xxx_provider
 
 import (
-	"github.com/mblanco/Go-Acme-events/core"
-	"github.com/mblanco/Go-Acme-events/core/ports"
-	"github.com/mblanco/Go-Acme-events/tools"
+	"github.com/mblanco/go-fun-events/core"
+	"github.com/mblanco/go-fun-events/tools"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
@@ -32,6 +31,6 @@ func TestLoadConfiguration(t *testing.T) {
 
 func TestSetupProviderConfiguration(t *testing.T) {
 	SetupProviderConfiguration()
-	assert.NotEmpty(t, ports.ProviderContext)
-	assert.NotEmpty(t, ports.ProviderContext.EventProvider)
+	assert.NotEmpty(t, core.ProviderContext)
+	assert.NotEmpty(t, core.ProviderContext.EventProvider)
 }

@@ -3,8 +3,8 @@ package xxx_provider
 import (
 	"encoding/xml"
 	"fmt"
-	"github.com/mblanco/Go-Acme-events/core/domain"
-	"github.com/mblanco/Go-Acme-events/errors"
+	"github.com/mblanco/go-fun-events/core"
+	"github.com/mblanco/go-fun-events/errors"
 	"math"
 	"reflect"
 	"time"
@@ -53,32 +53,32 @@ type Zone struct {
 	Numbered string   `xml:"numbered,attr"`
 }
 
-func MapProviderResponseToEventList(response *ProviderResponse, providerName string) ([]*domain.Event, error) {
+func MapProviderResponseToEventList(response *ProviderResponse, providerName string) ([]*core.Event, error) {
 	if reflect.DeepEqual(response, ProviderResponse{}) {
-		return []*domain.Event{}, nil
+		return []*core.Event{}, nil
 	}
 	if reflect.DeepEqual(response.Output, Output{}) {
-		return []*domain.Event{}, nil
+		return []*core.Event{}, nil
 	}
 	if response.Output.BasePlans == nil {
-		return []*domain.Event{}, nil
+		return []*core.Event{}, nil
 	}
-	var eventsA []*domain.Event
+	var eventsA []*core.Event
 	for _, basePlan := range response.Output.BasePlans {
 		if basePlan.Plans != nil {
 			for _, plan := range basePlan.Plans {
-				event := &domain.Event{}
+				event := &core.Event{}
 				event.ProvId = fmt.Sprintf(ProviderIdPattern, providerName, basePlan.BasePlanID, plan.PlanID)
 				event.Title = basePlan.Title
 				event.IsOnlineSale = "online" == basePlan.SellMode
 				startsAt, err := time.Parse(DateTimeLayout, plan.PlanStartDate)
 				if err != nil {
-					return []*domain.Event{}, errors.NewGenericError("Error mapping event: " + err.Error())
+					return []*core.Event{}, errors.NewGenericError("Error mapping event: " + err.Error())
 				}
 				event.StartsAt = startsAt
 				endsAt, err := time.Parse(DateTimeLayout, plan.PlanEndDate)
 				if err != nil {
-					return []*domain.Event{}, errors.NewGenericError("Error mapping event: " + err.Error())
+					return []*core.Event{}, errors.NewGenericError("Error mapping event: " + err.Error())
 				}
 				event.EndsAt = endsAt
 				if plan.Zones != nil && len(plan.Zones) != 0 {

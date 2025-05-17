@@ -2,8 +2,7 @@ package core
 
 import (
 	"fmt"
-	"github.com/mblanco/Go-Acme-events/core/ports"
-	"github.com/mblanco/Go-Acme-events/tools"
+	"github.com/mblanco/go-fun-events/tools"
 	"github.com/rs/zerolog/log"
 	"os"
 	"time"
@@ -35,8 +34,8 @@ func SetupCoreConfiguration() {
 
 func setupCoreContext(conf *coreConfiguration) {
 	c := conf.App
-	p := ports.ProviderContext
-	r := ports.RepositoryContext
+	p := ProviderContext
+	r := RepositoryContext
 	CoreContext.EventService = NewEventService(c.TimeToFeed, r.EventRepository, p.EventProvider)
 }
 

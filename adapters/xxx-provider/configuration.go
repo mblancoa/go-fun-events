@@ -1,9 +1,8 @@
 package xxx_provider
 
 import (
-	"github.com/mblanco/Go-Acme-events/core"
-	"github.com/mblanco/Go-Acme-events/core/ports"
-	"github.com/mblanco/Go-Acme-events/tools"
+	"github.com/mblanco/go-fun-events/core"
+	"github.com/mblanco/go-fun-events/tools"
 	"github.com/rs/zerolog/log"
 	"time"
 )
@@ -25,5 +24,5 @@ func SetupProviderConfiguration() {
 
 func setupProviderContext(conf *providerConfiguration) {
 	c := conf.Provider
-	ports.ProviderContext.EventProvider = NewEventProvider(c.Name, c.Url, c.Timeout)
+	core.ProviderContext.EventProvider = NewEventProvider(c.Name, c.Url, c.Timeout)
 }

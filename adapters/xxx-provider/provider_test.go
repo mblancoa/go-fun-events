@@ -3,8 +3,8 @@ package xxx_provider
 import (
 	"bytes"
 	"github.com/h2non/gock"
-	"github.com/mblanco/Go-Acme-events/core/ports"
-	"github.com/mblanco/Go-Acme-events/tools"
+	"github.com/mblanco/go-fun-events/core"
+	"github.com/mblanco/go-fun-events/tools"
 	"github.com/stretchr/testify/suite"
 	"testing"
 	"time"
@@ -18,7 +18,7 @@ var timeout = 2 * time.Millisecond
 
 type xxxProviderSuite struct {
 	suite.Suite
-	provider ports.EventProvider
+	provider core.EventProvider
 }
 
 func (suite *xxxProviderSuite) SetupSuite() {
