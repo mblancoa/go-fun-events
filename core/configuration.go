@@ -13,16 +13,20 @@ const (
 )
 
 type coreConfiguration struct {
-	App struct {
-		TimeToFeed time.Duration `yaml:"time_to_feed"`
+	App *struct {
 	} `yaml:"app"`
+	Supply *struct {
+		FeedInterval time.Duration `yaml:"feed-interval"`
+	} `yaml:"supply"`
 }
 
 var configFile string
-var CoreContext *coreContext = &coreContext{}
+var DomainContext *domainContext = &domainContext{}
 
-type coreContext struct {
-	EventService EventService
+type domainContext struct {
+	EventService      EventService
+	SupplyService     SupplyService
+	CoreConfiguration *coreConfiguration
 }
 
 func SetupCoreConfiguration() {
@@ -33,10 +37,14 @@ func SetupCoreConfiguration() {
 }
 
 func setupCoreContext(conf *coreConfiguration) {
-	c := conf.App
+	log.Info().Msg("Creating the domain context")
+	DomainContext.CoreConfiguration = conf
+	//c := conf.App
 	p := ProviderContext
 	r := RepositoryContext
-	CoreContext.EventService = NewEventService(c.TimeToFeed, r.EventRepository, p.EventProvider)
+	eventService := NewEventService(r.EventRepository)
+	DomainContext.EventService = eventService
+	DomainContext.SupplyService = NewSupplyService(eventService, p.EventProvider)
 }
 
 func GetConfigFile() string {
@@ -47,6 +55,7 @@ func GetConfigFile() string {
 		} else {
 			configFile = "conf/application.yml"
 		}
+		log.Info().Msgf("configfile: %s", configFile)
 	}
 	return configFile
 }

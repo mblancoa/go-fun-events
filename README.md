@@ -11,10 +11,6 @@ go-fun-events/
 |   |-- ports.go
 |   |-- configuration.go
 |
-|-- ports/
-|   |-- provider.go
-|   |-- repository.go
-|
 |-- adapters/
 |   |-- xxx-provider/
 |   |   |-- model.go
@@ -47,9 +43,14 @@ This step must be executed just when code is change and a new generation is nece
 Installation:`go install github.com/vektra/mockery/v2@v2.40.1`
 
 Generation: `make clean mocks`
-- 2- Test 
+- 2- Test
 
 `make test`
+
+### 3- build
+- User api application: `make build-api`
+- Supply application: `make build-suplly`
+- All: `make build`
 
 ### 3- Prepare environment, build and deploy the project
 - 1- Configure the application.yml file correctly (conf/application.yml)

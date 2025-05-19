@@ -1,4 +1,5 @@
-app.time-to-feed: 10s #seconds
+supply:
+  feed-interval: 5m #minutes
 
 provider:
   name: xxx

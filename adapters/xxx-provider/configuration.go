@@ -23,6 +23,7 @@ func SetupProviderConfiguration() {
 }
 
 func setupProviderContext(conf *providerConfiguration) {
+	log.Info().Msg("Creating the xxx provider context")
 	c := conf.Provider
 	core.ProviderContext.EventProvider = NewEventProvider(c.Name, c.Url, c.Timeout)
 }
