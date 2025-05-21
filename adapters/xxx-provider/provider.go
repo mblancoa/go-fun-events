@@ -2,8 +2,8 @@ package xxx_provider
 
 import (
 	"encoding/xml"
-	"github.com/mblanco/go-fun-events/core"
-	"github.com/mblanco/go-fun-events/errors"
+	"github.com/mblancoa/go-fun-events/core"
+	"github.com/mblancoa/go-fun-events/errors"
 	"gopkg.in/resty.v1"
 	"time"
 )

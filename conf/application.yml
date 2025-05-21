@@ -7,7 +7,7 @@ provider:
   timeout: 2000ms #milliseconds
 
 mongodb: 
-  database.name: FunDataBase
-  uri: ${MONGODB_URI}
+  name: FunDataBase
+  uri: mongodb://mongo:27017
   
 server.port: 8080

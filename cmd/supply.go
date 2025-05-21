@@ -2,22 +2,23 @@ package main
 
 import (
 	"fmt"
-	mongodb_repository "github.com/mblanco/go-fun-events/adapters/mongodb-repository"
-	xxx_provider "github.com/mblanco/go-fun-events/adapters/xxx-provider"
-	"github.com/mblanco/go-fun-events/core"
+	repo "github.com/mblancoa/go-fun-events/adapters/mongodb-repository"
+	prov "github.com/mblancoa/go-fun-events/adapters/xxx-provider"
+	"github.com/mblancoa/go-fun-events/core"
 	"github.com/rs/zerolog/log"
 	"time"
 )
 
 func main() {
-	xxx_provider.SetupProviderConfiguration()
-	mongodb_repository.SetupRepositoryConfiguration()
+	prov.SetupProviderConfiguration()
+	repo.SetupMongodbRepositoryConfiguration()
 	core.SetupCoreConfiguration()
 
 	startSupplyCron()
 }
 
 func startSupplyCron() {
+	//Todo
 	feedInterval := core.DomainContext.CoreConfiguration.Supply.FeedInterval
 	ticker := time.NewTicker(feedInterval)
 	defer log.Info().Msgf("SupplyService has been stopped")

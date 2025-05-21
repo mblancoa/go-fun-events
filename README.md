@@ -40,7 +40,7 @@ This step must be executed just when code is change and a new generation is nece
 ### 2- Run tests
 - 1- Mocks generation
 
-Installation:`go install github.com/vektra/mockery/v2@v2.40.1`
+Installation:`go install github.com/vektra/mockery/v3@latest
 
 Generation: `make clean mocks`
 - 2- Test

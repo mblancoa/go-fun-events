@@ -2,7 +2,7 @@ package core
 
 import (
 	"fmt"
-	"github.com/mblanco/go-fun-events/tools"
+	"github.com/mblancoa/go-fun-events/tools"
 	"github.com/rs/zerolog/log"
 	"os"
 	"time"

@@ -7,8 +7,5 @@ provider:
   timeout: 2000ms #milliseconds
 
 mongodb:
-  database.name: FunDataBase
-  port: 27018
-  uri: mongodb://localhost:${mongodb.port}
-
-server.port: 8090
+  name: FunDataBase
+  uri: mongodb://localhost:27018

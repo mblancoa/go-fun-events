@@ -1,6 +1,13 @@
+clean:
+	find -type f -name 'mock*.go' -print -delete
+	go clean
+
 code-generation:
 	find -type f -name '*_impl.go' -print -delete
 	go generate ./adapters/*
+
+mocks:
+	mockery
 
 test:
 	go clean -testcache

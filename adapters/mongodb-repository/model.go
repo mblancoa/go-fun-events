@@ -3,7 +3,7 @@ package mongodb_repository
 import (
 	"github.com/devfeel/mapper"
 	"github.com/google/uuid"
-	"github.com/mblanco/go-fun-events/core"
+	"github.com/mblancoa/go-fun-events/core"
 	"time"
 )
 
