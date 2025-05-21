@@ -69,7 +69,7 @@ func (m *eventRepository) InsertOrUpdate(toInsert []*core.Event) error {
 				errorList += "\n\t" + err.Error()
 				continue
 			}
-			db.Id, err = uuid.NewUUID()
+			db.Id = uuid.New()
 			if err != nil {
 				errorList += "\n\t" + err.Error()
 				continue

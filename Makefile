@@ -14,9 +14,9 @@ test:
 	go test ./...
 
 build-api:
-	go build -o ./target/userapi ./cmd/userapi.go
+	go build -o ./target/userapi ./cmd/userapi
 
 build-supply:
-	go build -o ./target/supply ./cmd/supply.go
+	go build -o ./target/supply ./cmd/supply
 
 build: build-api build-supply

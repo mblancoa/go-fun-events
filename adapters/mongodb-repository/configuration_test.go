@@ -37,7 +37,7 @@ func TestLoadConfiguration(t *testing.T) {
 	assert.NotEmpty(t, config.Mongodb)
 	mongodb := config.Mongodb
 	assert.NotEmpty(t, mongodb)
-	assert.Equal(t, "FunDataBase", mongodb.Name)
+	assert.Equal(t, "FunDatabase", mongodb.Name)
 	assert.Equal(t, "mongodb://localhost:27018", mongodb.Uri)
 }
 

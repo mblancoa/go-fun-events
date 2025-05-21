@@ -7,5 +7,5 @@ provider:
   timeout: 2000ms #milliseconds
 
 mongodb:
-  name: FunDataBase
+  name: FunDatabase
   uri: mongodb://localhost:27018

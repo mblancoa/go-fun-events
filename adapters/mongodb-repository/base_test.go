@@ -3,7 +3,6 @@ package mongodb_repository
 import (
 	"context"
 	mim "github.com/ONSdigital/dp-mongodb-in-memory"
-	"github.com/mblancoa/go-fun-events/core"
 	"github.com/mblancoa/go-fun-events/tools"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/suite"
@@ -18,7 +17,6 @@ type mongoDBSuite struct {
 	client           *mongo.Client
 	database         *mongo.Database
 	eventsCollection *mongo.Collection
-	eventRepository  core.EventRepository
 }
 
 func (suite *mongoDBSuite) SetupSuite() {
@@ -34,7 +32,7 @@ func (suite *mongoDBSuite) SetupSuite() {
 	err = client.Ping(testCtx, nil)
 	tools.ManageTestError(err)
 	suite.client = client
-	suite.database = client.Database("FunDataBase")
+	suite.database = client.Database("FunDatabase")
 	suite.Assert()
 }
 
@@ -82,12 +80,17 @@ func (suite *mongoDBSuite) setupEventsCollection() {
 	}
 
 	suite.eventsCollection = collection
-	suite.eventRepository = NewEventRepository(suite.eventsCollection)
 }
 
 func insertOne(coll *mongo.Collection, ctx context.Context, obj interface{}) {
 	log.Debug().Msgf("Inserting %v", obj)
 	_, err := coll.InsertOne(ctx, obj)
+	tools.ManageTestError(err)
+}
+
+func insertMany(coll *mongo.Collection, ctx context.Context, list []interface{}) {
+	log.Debug().Msgf("Inserting %v", list)
+	_, err := coll.InsertMany(ctx, list)
 	tools.ManageTestError(err)
 }
 
