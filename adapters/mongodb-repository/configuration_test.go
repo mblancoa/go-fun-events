@@ -34,7 +34,6 @@ func TestLoadConfiguration(t *testing.T) {
 	tools.LoadYamlConfiguration(core.GetConfigFile(), &config)
 
 	assert.NotEmpty(t, config)
-	assert.NotEmpty(t, config.Mongodb)
 	mongodb := config.Mongodb
 	assert.NotEmpty(t, mongodb)
 	assert.Equal(t, "FunDatabase", mongodb.Name)
