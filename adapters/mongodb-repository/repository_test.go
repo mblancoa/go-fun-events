@@ -91,15 +91,51 @@ func (suite *eventRepositorySuite) TestUpdate() {
 }
 
 func (suite *eventRepositorySuite) TestInsertOrUpdate() {
-	//Todo
+	start := time.Now()
+	end := start.Add(time.Hour)
+	list := []EventDB{
+		{Id: uuid.New(), ProvId: "xxx-001", Title: "title1", StartsAt: start, EndsAt: end, MinPrice: 15.0, MaxPrice: 30.0},
+		{Id: uuid.New(), ProvId: "xxx-002", Title: "title1", StartsAt: start.Add(24 * time.Hour), EndsAt: end.Add(24 * time.Hour), MinPrice: 15.0, MaxPrice: 30.0},
+	}
+	for _, v := range list {
+		insertOne(suite.eventsCollection, context.Background(), v)
+	}
+	suite.Assert().Equal(int64(2), count(suite.eventsCollection, context.Background()))
+	db := &EventDB{}
+	findOne(suite.eventsCollection, context.TODO(), "prov_id", "xxx-001", &db)
+	suite.Assert().NotEmpty(db)
+	suite.Assert().Equal(15.0, db.MinPrice)
+	suite.Assert().Equal(30.0, db.MaxPrice)
+
+	newList := []*core.Event{
+		{ProvId: "xxx-001", Title: "title1", StartsAt: start, EndsAt: end, MinPrice: 15.0, MaxPrice: 40.0},
+		{ProvId: "xxx-003", Title: "title1", IsOnlineSale: false, StartsAt: start.Add(24 * time.Hour), EndsAt: end.Add(24 * time.Hour), MinPrice: 15.0, MaxPrice: 30.0},
+	}
+
+	err := suite.eventRepository.InsertOrUpdate(newList)
+
+	suite.Assert().Empty(err)
+	count := count(suite.eventsCollection, context.Background())
+	suite.Assert().Equal(int64(3), count)
+
+	db1 := EventDB{}
+	findOne(suite.eventsCollection, context.TODO(), "prov_id", "xxx-001", &db1)
+	suite.Assert().NotEmpty(db1)
+	suite.Assert().Equal(15.0, db1.MinPrice)
+	suite.Assert().Equal(40.0, db1.MaxPrice)
+
+	db3 := EventDB{}
+	found := findOne(suite.eventsCollection, context.TODO(), "prov_id", "xxx-003", &db3)
+	suite.Assert().NotEmpty(db3)
+	suite.Assert().True(found)
 }
 
 func getEventDBList(size int) []EventDB {
 	var list []EventDB
 	for i := 0; i < size; i++ {
 		db := EventDB{}
-		db.Id = uuid.New()
 		tools.FakerBuild(&db)
+		db.Id = uuid.New()
 		list = append(list, db)
 	}
 	return list

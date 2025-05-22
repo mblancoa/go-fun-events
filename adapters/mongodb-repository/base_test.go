@@ -2,6 +2,7 @@ package mongodb_repository
 
 import (
 	"context"
+	"errors"
 	mim "github.com/ONSdigital/dp-mongodb-in-memory"
 	"github.com/mblancoa/go-fun-events/tools"
 	"github.com/rs/zerolog/log"
@@ -88,18 +89,18 @@ func insertOne(coll *mongo.Collection, ctx context.Context, obj interface{}) {
 	tools.ManageTestError(err)
 }
 
-func insertMany(coll *mongo.Collection, ctx context.Context, list []interface{}) {
-	log.Debug().Msgf("Inserting %v", list)
-	_, err := coll.InsertMany(ctx, list)
-	tools.ManageTestError(err)
-}
-
-func findOne(coll *mongo.Collection, ctx context.Context, property string, value, entity interface{}) {
+func findOne(coll *mongo.Collection, ctx context.Context, property string, value, entity interface{}) bool {
 	log.Debug().Msgf("Finding object from collection '%s'", coll.Name())
-	err := coll.FindOne(ctx, bson.M{
+	sr := coll.FindOne(ctx, bson.M{
 		property: value,
-	}, options.FindOne().SetSort(bson.M{})).Decode(entity)
+	}, options.FindOne().SetSort(bson.M{}))
+
+	err := sr.Decode(entity)
+	if errors.Is(err, mongo.ErrNoDocuments) {
+		return false
+	}
 	tools.ManageTestError(err)
+	return true
 }
 
 func deleteAll(coll *mongo.Collection, ctx context.Context) {
