@@ -26,5 +26,4 @@ jobs:
           mockery
       - name: Tests execution
         run: |
-          go clean -testcache
           go test ./...

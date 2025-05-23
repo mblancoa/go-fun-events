@@ -5,7 +5,7 @@ go 1.24
 toolchain go1.24.3
 
 require (
-	github.com/ONSdigital/dp-mongodb-in-memory v1.7.0
+	github.com/ONSdigital/dp-mongodb-in-memory v1.8.1
 	github.com/astaxie/beego v1.12.3
 	github.com/beego/beego/v2 v2.3.8
 	github.com/devfeel/mapper v0.7.14
