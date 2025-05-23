@@ -15,7 +15,7 @@ type webContext struct {
 func SetupApiConfiguration() {
 	log.Info().Msg("Initializing API configuration")
 	setupWebContext()
-	initRouter()
+	initRouters()
 }
 
 func setupWebContext() {

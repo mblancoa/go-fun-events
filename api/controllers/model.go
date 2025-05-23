@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-type EventSummary struct {
+type EventDto struct {
 	Id        uuid.UUID `json:"id"`
 	Title     string    `json:"title"`
 	StartDate time.Time `json:"start_date"`
@@ -14,8 +14,8 @@ type EventSummary struct {
 	EndTime   time.Time `json:"end_time"`
 	MinPrice  float64   `json:"min_price"`
 	MaxPrice  float64   `json:"max_price"`
-}
+} //@Name EventSummary
 
 type EventList struct {
-	Events []EventSummary `json:"events"`
-}
+	Events []EventDto `json:"events"`
+} //@Name EventList

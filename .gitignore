@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 **/*_impl.go
 **/mocks_test.go
-
+docs/
 ### STS ###
 .apt_generated
 .classpath

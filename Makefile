@@ -6,6 +6,8 @@ code-generation:
 	find -type f -name '*_impl.go' -print -delete
 	go generate ./adapters/*
 
+swagger:
+	swag init -dir cmd/userapi/  -parseDependency
 mocks:
 	mockery
 

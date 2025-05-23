@@ -47,14 +47,31 @@ Generation: `make clean mocks`
 
 `make test`
 
-### 3- build
+### 3- Swagger
+- [Documentation](https://github.com/swaggo/swag#declarative-comments-format)
+- Installation: `go install github.com/swaggo/swag/cmd/swag@latest`
+- Generation: `make swagger`
+- Configuration:  
+```go
+package api
+
+import (
+	"github.com/astaxie/beego"
+	_ "github.com/mblancoa/go-fun-events/docs"
+	"github.com/rs/zerolog/log"
+	swagger "github.com/weblfe/beego-swagger"
+)
+
+func initRouters() {
+	log.Info().Msg("Initializing events api routes")
+	beego.Get("/swagger/*", swagger.Handler)
+	...
+}
+```
+### 4- Build
 - User api application: `make build-api`
 - Supply application: `make build-suplly`
-- All: `make bu ild`
-
-### 4- Swagger
-- Installation `go install github.com/swaggo/swag/cmd/swag@latest`
-- Generation ``
+- All: `make build`
 
 ## Prepare environment, build and deploy the project
 - 1- Configure the application.yml file correctly (conf/application.yml)
