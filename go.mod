@@ -5,16 +5,17 @@ go 1.24
 toolchain go1.24.3
 
 require (
-	github.com/ONSdigital/dp-mongodb-in-memory v1.8.1
+	github.com/ONSdigital/dp-mongodb-in-memory v1.7.0
 	github.com/astaxie/beego v1.12.3
 	github.com/beego/beego/v2 v2.3.8
 	github.com/devfeel/mapper v0.7.14
-	github.com/gofrs/uuid v4.4.0+incompatible
 	github.com/google/uuid v1.6.0
 	github.com/h2non/gock v1.2.0
 	github.com/pioz/faker v1.7.3
 	github.com/rs/zerolog v1.34.0
 	github.com/stretchr/testify v1.10.0
+	github.com/swaggo/swag v1.16.4
+	github.com/weblfe/beego-swagger v0.1.3
 	go.mongodb.org/mongo-driver v1.17.3
 	gopkg.in/resty.v1 v1.12.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -44,7 +45,6 @@ require (
 	github.com/mailru/easyjson v0.9.0 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
-	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
@@ -56,9 +56,6 @@ require (
 	github.com/spf13/afero v1.14.0 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/swaggo/files v1.0.1 // indirect
-	github.com/swaggo/http-swagger v1.3.4 // indirect
-	github.com/swaggo/swag v1.16.4 // indirect
-	github.com/weblfe/beego-swagger v0.1.3 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.1.2 // indirect
 	github.com/xdg-go/stringprep v1.0.4 // indirect
