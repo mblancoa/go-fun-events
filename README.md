@@ -1,5 +1,7 @@
 # Go Fun Events
+[pipeline status](https://github.com/mblancoa/go-fun-events/actions)
 
+![Fun events schema](fun-events-diagram.png)
 ## Project structure
 Go Fun Events is implemented by  a hexagonal architecture and this is its distribution:
 
@@ -22,30 +24,38 @@ go-fun-events/
 |       |-- repository.go
 |       |-- configuration.go
 |
+|-- api/
+|   |-- controllers/
+|   |   |-- base.go
+|   |   |-- events.go
+|   |   |-- model.go
+|   |
+|   |-- configuration.go
+|   |-- routers.go
+|
+|-- cmd/
+|   |-- userapi/main.go
+|   |-- supply/main.go
+|
 |-- go.mod
 ```
 ## Business logic description
 TODO
 
-## How to run it
-...
 ## Step by step
 ### 1- Repositories generation
 This step must be executed just when code is change and a new generation is necessary
-- 1- Installation
->`go install github.com/sunboyy/repogen@latest`
 
-- 2- Generation
->`make code-generation`
-### 2- Run tests
-- 1- Mocks generation
+- Installation: `go install github.com/sunboyy/repogen@latest`
+- Generation: `make code-generation`
 
-Installation: `go install github.com/vektra/mockery/v3@latest`
+### 2- Test
+- 1- Mocks
 
-Generation: `make clean mocks`
-- 2- Test
-
-`make test`
+  - Installation: `go install github.com/vektra/mockery/v3@latest`
+  - Generation: `make clean mocks`
+- 2- Run tests
+  - `make test`
 
 ### 3- Swagger
 - [Documentation](https://github.com/swaggo/swag#declarative-comments-format)
@@ -77,4 +87,6 @@ func initRouters() {
 - 1- Configure the application.yml file correctly (conf/application.yml)
 - 2- Execute `make build` to build the package
 - 3- Execute `make deploy`to run the application with docker-compose
+- 4- Go to http://localhost:8080/swagger to try it
+- 5- Execute `make stop` to shut down the network
 
