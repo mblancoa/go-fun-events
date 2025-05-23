@@ -23,7 +23,7 @@ jobs:
       - name: Mocks generation
         run: |
           go install github.com/vektra/mockery/v3@latest
-          mockery
+          make mocks
       - name: Tests execution
         run: |
           go clean -testcache
