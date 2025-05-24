@@ -7,7 +7,7 @@ code-generation:
 	go generate ./adapters/*
 
 swagger:
-	swag init -dir cmd/userapi/  -parseDependency
+	swag init -g cmd/userapi/main.go  -parseDependency
 mocks:
 	mockery
 

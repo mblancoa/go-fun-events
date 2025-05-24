@@ -8,6 +8,6 @@ provider:
 
 mongodb: 
   name: FunDatabase
-  uri: mongodb://localhost:27017
+  uri: mongodb://localhost:27018
   
 server.port: 8080
