@@ -49,19 +49,11 @@ This step must be executed just when code is change and a new generation is nece
 - Installation: `go install github.com/sunboyy/repogen@latest`
 - Generation: `make code-generation`
 
-### 2- Test
-- 1- Mocks
-
-  - Installation: `go install github.com/vektra/mockery/v3@latest`
-  - Generation: `make clean mocks`
-- 2- Run tests
-  - `make test`
-
-### 3- Swagger
+### 2- Swagger
 - [Documentation](https://github.com/swaggo/swag#declarative-comments-format)
 - Installation: `go install github.com/swaggo/swag/cmd/swag@latest`
 - Generation: `make swagger`
-- Configuration:  
+- Configuration:
 ```go
 package api
 
@@ -71,6 +63,14 @@ import (
 	"github.com/rs/zerolog/log"
 	swagger "github.com/weblfe/beego-swagger"
 )
+
+### 3- Test
+- 1- Mocks
+
+  - Installation: `go install github.com/vektra/mockery/v3@latest`
+  - Generation: `make clean mocks`
+- 2- Run tests
+  - `make test`
 
 func initRouters() {
 	log.Info().Msg("Initializing events api routes")
@@ -88,5 +88,5 @@ func initRouters() {
 - 2- Execute `make build` to build the package
 - 3- Execute `make deploy`to run the application with docker-compose
 - 4- Go to http://localhost:8080/swagger to try it
-- 5- Execute `make stop` to shut down the network
+- 5- Execute `make stop` to shutdown the network
 

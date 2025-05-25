@@ -1,0 +1,49 @@
+services:
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    ports:
+      - "27016:27017"
+    environment:
+      MONGO_INITDB_DATABASE: FunDatabase
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+
+  fun-events-app:
+    image: golang:1.24
+    container_name: events-service
+    depends_on:
+      - mongo
+    ports:
+      - "8080:8080"
+    environment:
+      MONGODB_URI: 'mongodb://mongo:27017'
+    working_dir: /app
+    command: bash -c "sleep 5 && ./userapi"
+    volumes:
+      - ./../target:/app
+      - ./../conf:/app/conf
+
+  xxx-provider:
+    image: nginx:latest
+    container_name: xxx-provider
+    ports:
+      - "80:80"
+    volumes:
+      - ./__files:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      
+  fun-supply-app:
+    image: golang:1.24
+    container_name: supply-service
+    depends_on:
+      - mongo
+      - xxx-provider
+    environment:
+      MONGODB_URI: 'mongodb://mongo:27017'
+      PROVIDER_URL: 'http://xxx-provider/api/events'
+    working_dir: /app
+    command: bash -c "sleep 5 && ./supply"
+    volumes:
+      - ./../target:/app
+      - ./../conf:/app/conf

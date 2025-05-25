@@ -16,9 +16,18 @@ test:
 	go test ./...
 
 build-api:
+	find -type f -name './target/userapi' -print -delete
 	go build -o ./target/userapi ./cmd/userapi
 
 build-supply:
+	find -type f -name './target/supply' -print -delete
 	go build -o ./target/supply ./cmd/supply
 
 build: build-api build-supply
+
+.PHONY: deploy
+deploy:
+	docker-compose -f ./deploy/docker-compose.yml up -d
+
+stop:
+	docker-compose -f ./deploy/docker-compose.yml down
