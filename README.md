@@ -80,12 +80,12 @@ func initRouters() {
 ```
 ### 4- Build
 - User api application: `make build-api`
-- Supply application: `make build-suplly`
+- Supply application: `make build-supply`
 - All: `make build`
 
 ## Prepare environment, build and deploy the project
 - 1- Configure the application.yml file correctly (conf/application.yml)
-- 2- Execute `make build` to build the package
+- 2- Execute `make build` to build the binaries
 - 3- Execute `make deploy`to run the application with docker-compose
 - 4- Go to http://localhost:8080/swagger to try it
 - 5- Execute `make stop` to shutdown the network
