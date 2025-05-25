@@ -20,7 +20,7 @@ func init() {
 }
 
 func setupDB() {
-	server, err := mim.StartWithOptions(context.TODO(), "5.0.2", mim.WithPort(27018))
+	server, err := mim.StartWithOptions(context.TODO(), "6.0.23", mim.WithPort(27018))
 	tools.ManageTestError(err)
 	mongodbServer = server
 }

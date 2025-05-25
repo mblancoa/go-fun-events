@@ -23,7 +23,7 @@ type mongoDBSuite struct {
 func (suite *mongoDBSuite) SetupSuite() {
 	testCtx := context.Background()
 
-	server, err := mim.Start(testCtx, "5.0.2")
+	server, err := mim.Start(testCtx, "6.0.23")
 	tools.ManageTestError(err)
 	suite.server = server
 
