@@ -64,20 +64,19 @@ import (
 	swagger "github.com/weblfe/beego-swagger"
 )
 
-### 3- Test
-- 1- Mocks
-
-  - Installation: `go install github.com/vektra/mockery/v3@latest`
-  - Generation: `make clean mocks`
-- 2- Run tests
-  - `make test`
-
 func initRouters() {
 	log.Info().Msg("Initializing events api routes")
 	beego.Get("/swagger/*", swagger.Handler)
 	...
 }
 ```
+### 3- Test
+- 1- Mocks
+
+    - Installation: `go install github.com/vektra/mockery/v3@latest`
+    - Generation: `make clean mocks`
+- 2- Run tests
+    - `make test`
 
 ### 4- Build
 - User api application: `make build-api`
