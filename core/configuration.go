@@ -16,7 +16,7 @@ type coreConfiguration struct {
 	App *struct {
 	} `yaml:"app"`
 	Supply *struct {
-		FeedInterval time.Duration `yaml:"feed-interval"`
+		FeedInterval time.Duration `yaml:"feed-interval" env:"SUPPLY_FEED_INTERVAL"`
 	} `yaml:"supply"`
 }
 

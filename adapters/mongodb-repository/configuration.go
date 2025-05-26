@@ -8,14 +8,13 @@ import (
 	"github.com/rs/zerolog/log"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"os"
 )
 
 type mongoDbConfiguration struct {
 	Mongodb struct {
-		Name string `yaml:"name"`
-		Port int    `yaml:"port"`
-		Uri  string `yaml:"uri"`
+		Name string `yaml:"name" env:"MONGODB_NAME"`
+		Port int    `yaml:"port" env:"MONGODB_NAME"`
+		Uri  string `yaml:"uri" env:"MONGODB_URI"`
 	} `yaml:"mongodb"`
 }
 
@@ -23,7 +22,6 @@ func SetupMongodbRepositoryConfiguration() {
 	log.Info().Msg("Initializing mongodb repository configuration")
 	var config = &mongoDbConfiguration{}
 	tools.LoadYamlConfiguration(core.GetConfigFile(), config)
-	config = updateConfigFromEnvironment(config)
 
 	ctx := context.Background()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(config.Mongodb.Uri))
@@ -33,14 +31,6 @@ func SetupMongodbRepositoryConfiguration() {
 
 	database := client.Database(config.Mongodb.Name)
 	setupRepositoryContext(database)
-}
-
-func updateConfigFromEnvironment(config *mongoDbConfiguration) *mongoDbConfiguration {
-	uri := os.Getenv("MONGODB_URI")
-	if uri != "" {
-		config.Mongodb.Uri = uri
-	}
-	return config
 }
 
 func setupRepositoryContext(database *mongo.Database) {

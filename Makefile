@@ -16,11 +16,11 @@ test:
 	go test ./...
 
 build-api:
-	find -type f -name './target/userapi' -print -delete
+	rm -f ./target/userapi
 	go build -o ./target/userapi ./cmd/userapi
 
 build-supply:
-	find -type f -name './target/supply' -print -delete
+	rm -f ./target/supply
 	go build -o ./target/supply ./cmd/supply
 
 build: build-api build-supply
