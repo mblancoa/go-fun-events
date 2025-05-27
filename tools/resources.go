@@ -16,13 +16,17 @@ func LoadJsonConfiguration(fileName string, configObj interface{}) {
 	bts := LoadFile(fileName)
 	err := json.Unmarshal(bts, configObj)
 	errors.ManageErrorPanic(err)
-	updateFromEnvironment(reflect.Indirect(reflect.ValueOf(configObj)))
+	LoadEnvironmentConfiguration(configObj)
 }
 
 func LoadYamlConfiguration(fileName string, configObj interface{}) {
 	bts := LoadFile(fileName)
 	err := yaml.Unmarshal(bts, configObj)
 	errors.ManageErrorPanic(err)
+	LoadEnvironmentConfiguration(configObj)
+}
+
+func LoadEnvironmentConfiguration(configObj any) {
 	updateFromEnvironment(reflect.Indirect(reflect.ValueOf(configObj)))
 }
 
@@ -65,21 +69,21 @@ func parseValue(field reflect.StructField, value string) reflect.Value {
 	case reflect.String:
 		return reflect.ValueOf(value)
 	case reflect.Int:
-		return parseInt(field, value)
+		return parseIntValue(value)
 	case reflect.Int64:
-		return parseInt64(field, value)
+		return parseInt64Value(field, value)
 	default:
 		return reflect.Value{}
 	}
 }
 
-func parseInt(field reflect.StructField, value string) reflect.Value {
+func parseIntValue(value string) reflect.Value {
 	intValue, err := strconv.Atoi(value)
 	errors.ManageErrorPanic(err)
 	return reflect.ValueOf(intValue)
 }
 
-func parseInt64(field reflect.StructField, value string) reflect.Value {
+func parseInt64Value(field reflect.StructField, value string) reflect.Value {
 	if field.Type.Name() == "Duration" {
 		durationValue, err := time.ParseDuration(value)
 		errors.ManageErrorPanic(err)

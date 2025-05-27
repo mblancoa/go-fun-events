@@ -1,0 +1,11 @@
+"test": {
+  "file": {
+        "name": "configuration.json",
+        "description": "Configuration file to test"
+  },
+  "metadata": {
+        "size": 1024,
+        "key-number": 5,
+        "frequency": 3m
+  }
+}
