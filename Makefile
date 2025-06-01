@@ -4,7 +4,7 @@ clean:
 
 code-generation:
 	find -type f -name '*_impl.go' -print -delete
-	go generate ./adapters/*
+	go generate ./pkg/adapters/*
 
 swagger:
 	swag init -g cmd/userapi/main.go  -parseDependency

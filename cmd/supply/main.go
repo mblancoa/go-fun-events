@@ -1,8 +1,8 @@
 package main
 
 import (
-	repo "github.com/mblancoa/go-fun-events/adapters/mongodb-repository"
-	prov "github.com/mblancoa/go-fun-events/adapters/xxx-provider"
+	repo "github.com/mblancoa/go-fun-events/pkg/adapters/mongodb-repository"
+	prov "github.com/mblancoa/go-fun-events/pkg/adapters/xxx-provider"
 	"github.com/mblancoa/go-fun-events/pkg/core"
 	"time"
 )

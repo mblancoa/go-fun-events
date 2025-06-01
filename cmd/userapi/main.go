@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/astaxie/beego"
-	repo "github.com/mblancoa/go-fun-events/adapters/mongodb-repository"
 	"github.com/mblancoa/go-fun-events/api"
+	repo "github.com/mblancoa/go-fun-events/pkg/adapters/mongodb-repository"
 	"github.com/mblancoa/go-fun-events/pkg/core"
 )
 
