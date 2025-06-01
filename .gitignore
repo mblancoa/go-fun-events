@@ -1,5 +1,4 @@
 HELP.md
-target/
 deploy/data/db
 bin/
 !.mvn/wrapper/maven-wrapper.jar
@@ -7,7 +6,7 @@ bin/
 !**/src/test/**/target/
 **/*_impl.go
 **/mocks_test.go
-docs/
+pkg/docs/
 ### STS ###
 .apt_generated
 .classpath

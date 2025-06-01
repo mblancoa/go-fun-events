@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	mim "github.com/ONSdigital/dp-mongodb-in-memory"
-	"github.com/mblancoa/go-fun-events/tools"
+	"github.com/mblancoa/go-fun-events/pkg/tools"
 	"github.com/rs/zerolog/log"
 	"github.com/stretchr/testify/suite"
 	"go.mongodb.org/mongo-driver/bson"

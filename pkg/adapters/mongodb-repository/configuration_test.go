@@ -4,7 +4,7 @@ import (
 	"context"
 	mim "github.com/ONSdigital/dp-mongodb-in-memory"
 	core2 "github.com/mblancoa/go-fun-events/pkg/core"
-	"github.com/mblancoa/go-fun-events/tools"
+	tools2 "github.com/mblancoa/go-fun-events/pkg/tools"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
@@ -14,14 +14,14 @@ var mongodbServer *mim.Server
 
 func init() {
 	err := os.Chdir("./../../..")
-	tools.ManageTestError(err)
+	tools2.ManageTestError(err)
 	err = os.Setenv(core2.RunMode, "test")
-	tools.ManageTestError(err)
+	tools2.ManageTestError(err)
 }
 
 func setupDB() {
 	server, err := mim.StartWithOptions(context.TODO(), "6.0.23", mim.WithPort(27018))
-	tools.ManageTestError(err)
+	tools2.ManageTestError(err)
 	mongodbServer = server
 }
 
@@ -31,7 +31,7 @@ func TearDownDB() {
 
 func TestLoadConfiguration(t *testing.T) {
 	var config mongoDbConfiguration
-	tools.LoadYamlConfiguration(core2.GetConfigFile(), &config)
+	tools2.LoadYamlConfiguration(core2.GetConfigFile(), &config)
 
 	assert.NotEmpty(t, config)
 	mongodb := config.Mongodb

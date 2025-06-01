@@ -3,7 +3,7 @@ package core
 import (
 	"errors"
 	"github.com/google/uuid"
-	"github.com/mblancoa/go-fun-events/tools"
+	"github.com/mblancoa/go-fun-events/pkg/tools"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 	"testing"

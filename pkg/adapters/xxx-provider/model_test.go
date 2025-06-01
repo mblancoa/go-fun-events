@@ -1,15 +1,15 @@
 package xxx_provider
 
 import (
-	"github.com/mblancoa/go-fun-events/tools"
+	tools2 "github.com/mblancoa/go-fun-events/pkg/tools"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
 func TestMapProviderResponseToEventList_successful(t *testing.T) {
 	rsp := &ProviderResponse{}
-	err := tools.UnmarshalXmlResource("testdata/to-map.xml", rsp)
-	tools.ManageTestError(err)
+	err := tools2.UnmarshalXmlResource("testdata/to-map.xml", rsp)
+	tools2.ManageTestError(err)
 
 	eventsA, err := MapProviderResponseToEventList(rsp, providerName)
 
@@ -30,8 +30,8 @@ func TestMapProviderResponseToEventList_successful(t *testing.T) {
 }
 func TestMapProviderResponseToEventList_successfulPricesAreOIfNotZones(t *testing.T) {
 	rsp := &ProviderResponse{}
-	err := tools.UnmarshalXmlResource("testdata/to-map-without-zones.xml", rsp)
-	tools.ManageTestError(err)
+	err := tools2.UnmarshalXmlResource("testdata/to-map-without-zones.xml", rsp)
+	tools2.ManageTestError(err)
 
 	eventsA, err := MapProviderResponseToEventList(rsp, providerName)
 

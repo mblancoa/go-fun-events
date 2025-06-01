@@ -2,7 +2,7 @@ package xxx_provider
 
 import (
 	core2 "github.com/mblancoa/go-fun-events/pkg/core"
-	"github.com/mblancoa/go-fun-events/tools"
+	"github.com/mblancoa/go-fun-events/pkg/tools"
 	"github.com/rs/zerolog/log"
 	"time"
 )

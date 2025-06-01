@@ -4,7 +4,7 @@ import (
 	"context"
 	core2 "github.com/mblancoa/go-fun-events/pkg/core"
 	"github.com/mblancoa/go-fun-events/pkg/errors"
-	"github.com/mblancoa/go-fun-events/tools"
+	"github.com/mblancoa/go-fun-events/pkg/tools"
 	"github.com/rs/zerolog/log"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"

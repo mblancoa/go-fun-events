@@ -1,7 +1,7 @@
 package core
 
 import (
-	"github.com/mblancoa/go-fun-events/tools"
+	tools2 "github.com/mblancoa/go-fun-events/pkg/tools"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
@@ -10,9 +10,9 @@ import (
 
 func init() {
 	err := os.Chdir("./../..")
-	tools.ManageTestError(err)
+	tools2.ManageTestError(err)
 	err = os.Setenv(RunMode, "test")
-	tools.ManageTestError(err)
+	tools2.ManageTestError(err)
 }
 
 func setupPortContexts(t *testing.T) {
@@ -27,7 +27,7 @@ func cleanPortContexts() {
 }
 func TestLoadConfiguration(t *testing.T) {
 	var config coreConfiguration
-	tools.LoadYamlConfiguration(GetConfigFile(), &config)
+	tools2.LoadYamlConfiguration(GetConfigFile(), &config)
 
 	assert.NotEmpty(t, config)
 	supply := config.Supply

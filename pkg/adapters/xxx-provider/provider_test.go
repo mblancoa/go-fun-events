@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"github.com/h2non/gock"
 	"github.com/mblancoa/go-fun-events/pkg/core"
-	"github.com/mblancoa/go-fun-events/tools"
+	tools2 "github.com/mblancoa/go-fun-events/pkg/tools"
 	"github.com/stretchr/testify/suite"
 	"testing"
 	"time"
@@ -34,7 +34,7 @@ func TestXxxProviderSuite(t *testing.T) {
 
 func (suite *xxxProviderSuite) TestGetEvents_successful() {
 	defer gock.Off()
-	rsp := tools.LoadFile("testdata/response.xml")
+	rsp := tools2.LoadFile("testdata/response.xml")
 	gock.New(providerDomain).Get(fetchEventsPath).Reply(200).Body(bytes.NewReader(rsp))
 
 	events, err := suite.provider.GetEvents()
@@ -46,7 +46,7 @@ func (suite *xxxProviderSuite) TestGetEvents_successful() {
 
 func (suite *xxxProviderSuite) TestGetEvents_returnsErrorWhenResponseFails() {
 	defer gock.Off()
-	gock.New(providerDomain).Get(fetchEventsPath).Reply(500).SetError(tools.NewTestError("Internal server error"))
+	gock.New(providerDomain).Get(fetchEventsPath).Reply(500).SetError(tools2.NewTestError("Internal server error"))
 
 	events, err := suite.provider.GetEvents()
 
@@ -57,7 +57,7 @@ func (suite *xxxProviderSuite) TestGetEvents_returnsErrorWhenResponseFails() {
 
 func (suite *xxxProviderSuite) TestGetEvents_returnsErrorWhenUnmarshallingFails() {
 	defer gock.Off()
-	rsp := tools.LoadFile("testdata/response-with-error.xml")
+	rsp := tools2.LoadFile("testdata/response-with-error.xml")
 	gock.New(providerDomain).Get(fetchEventsPath).Reply(200).Body(bytes.NewReader(rsp))
 
 	events, err := suite.provider.GetEvents()
@@ -69,7 +69,7 @@ func (suite *xxxProviderSuite) TestGetEvents_returnsErrorWhenUnmarshallingFails(
 
 func (suite *xxxProviderSuite) TestGetEvents_returnsErrorWhenMappingFails() {
 	defer gock.Off()
-	rsp := tools.LoadFile("testdata/response-with-bad-date-format.xml")
+	rsp := tools2.LoadFile("testdata/response-with-bad-date-format.xml")
 	gock.New(providerDomain).Get(fetchEventsPath).Reply(200).Body(bytes.NewReader(rsp))
 
 	events, err := suite.provider.GetEvents()

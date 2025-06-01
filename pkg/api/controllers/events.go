@@ -4,7 +4,7 @@ import (
 	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/validation"
 	"github.com/mblancoa/go-fun-events/pkg/core"
-	"github.com/mblancoa/go-fun-events/tools"
+	"github.com/mblancoa/go-fun-events/pkg/tools"
 	"net/http"
 	"time"
 )

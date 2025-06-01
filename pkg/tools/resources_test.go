@@ -29,7 +29,7 @@ type fileConfiguration struct {
 }
 
 func init() {
-	err := os.Chdir("./..")
+	err := os.Chdir("./../..")
 	ManageTestError(err)
 }
 

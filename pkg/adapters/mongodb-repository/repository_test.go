@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/google/uuid"
 	core2 "github.com/mblancoa/go-fun-events/pkg/core"
-	"github.com/mblancoa/go-fun-events/tools"
+	"github.com/mblancoa/go-fun-events/pkg/tools"
 	"github.com/stretchr/testify/suite"
 	"testing"
 	"time"

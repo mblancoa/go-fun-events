@@ -2,8 +2,8 @@ package api
 
 import (
 	"github.com/astaxie/beego"
-	_ "github.com/mblancoa/go-fun-events/docs"
 	"github.com/mblancoa/go-fun-events/pkg/api/controllers"
+	_ "github.com/mblancoa/go-fun-events/pkg/docs"
 	"github.com/rs/zerolog/log"
 	swagger "github.com/weblfe/beego-swagger"
 )
