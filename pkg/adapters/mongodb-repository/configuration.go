@@ -2,8 +2,8 @@ package mongodb_repository
 
 import (
 	"context"
-	"github.com/mblancoa/go-fun-events/errors"
 	core2 "github.com/mblancoa/go-fun-events/pkg/core"
+	"github.com/mblancoa/go-fun-events/pkg/errors"
 	"github.com/mblancoa/go-fun-events/tools"
 	"github.com/rs/zerolog/log"
 	"go.mongodb.org/mongo-driver/mongo"

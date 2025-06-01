@@ -3,7 +3,7 @@ package tools
 import (
 	"encoding/json"
 	"encoding/xml"
-	"github.com/mblancoa/go-fun-events/errors"
+	"github.com/mblancoa/go-fun-events/pkg/errors"
 	"gopkg.in/yaml.v3"
 	"io"
 	"os"

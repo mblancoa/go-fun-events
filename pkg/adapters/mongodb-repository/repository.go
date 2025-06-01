@@ -3,8 +3,8 @@ package mongodb_repository
 import (
 	"context"
 	"github.com/google/uuid"
-	"github.com/mblancoa/go-fun-events/errors"
 	core2 "github.com/mblancoa/go-fun-events/pkg/core"
+	"github.com/mblancoa/go-fun-events/pkg/errors"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"time"
