@@ -17,9 +17,9 @@ jobs:
       - name: Code generation
         run: |
           go install github.com/sunboyy/repogen@latest
-          go generate ./adapters/*
+          make code-generation
           go install github.com/swaggo/swag/cmd/swag@latest
-          swag init -dir cmd/userapi/  -parseDependency
+          make swagger
       - name: Mocks generation
         run: |
           go install github.com/vektra/mockery/v3@latest
