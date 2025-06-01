@@ -53,7 +53,7 @@ func GetConfigFile() string {
 		if mode != "" {
 			configFile = fmt.Sprintf("conf/%s.application.yml", mode)
 		} else {
-			configFile = "conf/application.yml"
+			configFile = "./conf/application.yml"
 		}
 		log.Info().Msgf("configfile: %s", configFile)
 	}

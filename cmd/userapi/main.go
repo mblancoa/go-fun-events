@@ -4,7 +4,7 @@ import (
 	"github.com/astaxie/beego"
 	repo "github.com/mblancoa/go-fun-events/adapters/mongodb-repository"
 	"github.com/mblancoa/go-fun-events/api"
-	"github.com/mblancoa/go-fun-events/core"
+	"github.com/mblancoa/go-fun-events/pkg/core"
 )
 
 func main() {

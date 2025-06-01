@@ -3,7 +3,7 @@ package xxx_provider
 import (
 	"bytes"
 	"github.com/h2non/gock"
-	"github.com/mblancoa/go-fun-events/core"
+	"github.com/mblancoa/go-fun-events/pkg/core"
 	"github.com/mblancoa/go-fun-events/tools"
 	"github.com/stretchr/testify/suite"
 	"testing"

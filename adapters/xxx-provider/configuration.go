@@ -1,7 +1,7 @@
 package xxx_provider
 
 import (
-	"github.com/mblancoa/go-fun-events/core"
+	core2 "github.com/mblancoa/go-fun-events/pkg/core"
 	"github.com/mblancoa/go-fun-events/tools"
 	"github.com/rs/zerolog/log"
 	"time"
@@ -18,7 +18,7 @@ type providerConfiguration struct {
 func SetupProviderConfiguration() {
 	log.Info().Msg("Initializing xxx provider configuration")
 	config := &providerConfiguration{}
-	tools.LoadYamlConfiguration(core.GetConfigFile(), config)
+	tools.LoadYamlConfiguration(core2.GetConfigFile(), config)
 
 	setupProviderContext(config)
 }
@@ -26,5 +26,5 @@ func SetupProviderConfiguration() {
 func setupProviderContext(conf *providerConfiguration) {
 	log.Info().Msg("Creating the xxx provider context")
 	c := conf.Provider
-	core.ProviderContext.EventProvider = NewEventProvider(c.Name, c.Url, c.Timeout)
+	core2.ProviderContext.EventProvider = NewEventProvider(c.Name, c.Url, c.Timeout)
 }

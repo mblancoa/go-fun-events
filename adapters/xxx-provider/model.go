@@ -3,8 +3,8 @@ package xxx_provider
 import (
 	"encoding/xml"
 	"fmt"
-	"github.com/mblancoa/go-fun-events/core"
 	"github.com/mblancoa/go-fun-events/errors"
+	"github.com/mblancoa/go-fun-events/pkg/core"
 	"math"
 	"reflect"
 	"time"

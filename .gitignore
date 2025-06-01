@@ -1,6 +1,7 @@
 HELP.md
 target/
 deploy/data/db
+bin/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/

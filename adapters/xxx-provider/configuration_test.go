@@ -1,7 +1,7 @@
 package xxx_provider
 
 import (
-	"github.com/mblancoa/go-fun-events/core"
+	core2 "github.com/mblancoa/go-fun-events/pkg/core"
 	"github.com/mblancoa/go-fun-events/tools"
 	"github.com/stretchr/testify/assert"
 	"os"
@@ -12,13 +12,13 @@ import (
 func init() {
 	err := os.Chdir("./../..")
 	tools.ManageTestError(err)
-	err = os.Setenv(core.RunMode, "test")
+	err = os.Setenv(core2.RunMode, "test")
 	tools.ManageTestError(err)
 }
 
 func TestLoadConfiguration(t *testing.T) {
 	var config providerConfiguration
-	tools.LoadYamlConfiguration(core.GetConfigFile(), &config)
+	tools.LoadYamlConfiguration(core2.GetConfigFile(), &config)
 
 	assert.NotEmpty(t, config)
 	assert.NotEmpty(t, config.Provider)
@@ -31,6 +31,6 @@ func TestLoadConfiguration(t *testing.T) {
 
 func TestSetupProviderConfiguration(t *testing.T) {
 	SetupProviderConfiguration()
-	assert.NotEmpty(t, core.ProviderContext)
-	assert.NotEmpty(t, core.ProviderContext.EventProvider)
+	assert.NotEmpty(t, core2.ProviderContext)
+	assert.NotEmpty(t, core2.ProviderContext.EventProvider)
 }

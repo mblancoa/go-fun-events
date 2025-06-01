@@ -22,7 +22,7 @@ services:
     working_dir: /app
     command: bash -c "sleep 5 && ./userapi"
     volumes:
-      - ./../target:/app
+      - ./../bin:/app
       - ./../conf:/app/conf
 
   xxx-provider:
@@ -46,5 +46,5 @@ services:
     working_dir: /app
     command: bash -c "sleep 5 && ./supply"
     volumes:
-      - ./../target:/app
+      - ./../bin:/app
       - ./../conf:/app/conf

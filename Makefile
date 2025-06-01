@@ -16,12 +16,12 @@ test:
 	go test ./...
 
 build-api:
-	rm -f ./target/userapi
-	go build -o ./target/userapi ./cmd/userapi
+	rm -f ./bin/userapi
+	go build -o ./bin/userapi ./cmd/userapi
 
 build-supply:
-	rm -f ./target/supply
-	go build -o ./target/supply ./cmd/supply
+	rm -f ./bin/supply
+	go build -o ./bin/supply ./cmd/supply
 
 build: build-api build-supply
 

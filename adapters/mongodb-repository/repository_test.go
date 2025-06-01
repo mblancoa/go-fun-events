@@ -3,7 +3,7 @@ package mongodb_repository
 import (
 	"context"
 	"github.com/google/uuid"
-	"github.com/mblancoa/go-fun-events/core"
+	core2 "github.com/mblancoa/go-fun-events/pkg/core"
 	"github.com/mblancoa/go-fun-events/tools"
 	"github.com/stretchr/testify/suite"
 	"testing"
@@ -12,7 +12,7 @@ import (
 
 type eventRepositorySuite struct {
 	mongoDBSuite
-	eventRepository core.EventRepository
+	eventRepository core2.EventRepository
 }
 
 func (suite *eventRepositorySuite) SetupSuite() {
@@ -74,7 +74,7 @@ func (suite *eventRepositorySuite) TestUpdate() {
 	event1.MinPrice = 12.5
 	event1.MaxPrice = 30
 
-	err := suite.eventRepository.Update([]*core.Event{event, event1})
+	err := suite.eventRepository.Update([]*core2.Event{event, event1})
 
 	suite.Assert().Empty(err)
 	db := &EventDB{}
@@ -107,7 +107,7 @@ func (suite *eventRepositorySuite) TestInsertOrUpdate() {
 	suite.Assert().Equal(15.0, db.MinPrice)
 	suite.Assert().Equal(30.0, db.MaxPrice)
 
-	newList := []*core.Event{
+	newList := []*core2.Event{
 		{ProvId: "xxx-001", Title: "title1", StartsAt: start, EndsAt: end, MinPrice: 15.0, MaxPrice: 40.0},
 		{ProvId: "xxx-003", Title: "title1", IsOnlineSale: false, StartsAt: start.Add(24 * time.Hour), EndsAt: end.Add(24 * time.Hour), MinPrice: 15.0, MaxPrice: 30.0},
 	}

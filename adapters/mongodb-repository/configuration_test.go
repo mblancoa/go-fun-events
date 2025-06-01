@@ -3,7 +3,7 @@ package mongodb_repository
 import (
 	"context"
 	mim "github.com/ONSdigital/dp-mongodb-in-memory"
-	"github.com/mblancoa/go-fun-events/core"
+	core2 "github.com/mblancoa/go-fun-events/pkg/core"
 	"github.com/mblancoa/go-fun-events/tools"
 	"github.com/stretchr/testify/assert"
 	"os"
@@ -15,7 +15,7 @@ var mongodbServer *mim.Server
 func init() {
 	err := os.Chdir("./../..")
 	tools.ManageTestError(err)
-	err = os.Setenv(core.RunMode, "test")
+	err = os.Setenv(core2.RunMode, "test")
 	tools.ManageTestError(err)
 }
 
@@ -31,7 +31,7 @@ func TearDownDB() {
 
 func TestLoadConfiguration(t *testing.T) {
 	var config mongoDbConfiguration
-	tools.LoadYamlConfiguration(core.GetConfigFile(), &config)
+	tools.LoadYamlConfiguration(core2.GetConfigFile(), &config)
 
 	assert.NotEmpty(t, config)
 	mongodb := config.Mongodb
@@ -46,6 +46,6 @@ func TestSetupMongodbRepositoryConfiguration(t *testing.T) {
 
 	SetupMongodbRepositoryConfiguration()
 
-	assert.NotEmpty(t, core.RepositoryContext)
-	assert.NotEmpty(t, core.RepositoryContext.EventRepository)
+	assert.NotEmpty(t, core2.RepositoryContext)
+	assert.NotEmpty(t, core2.RepositoryContext.EventRepository)
 }

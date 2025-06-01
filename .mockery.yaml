@@ -9,7 +9,7 @@ pkgname: '{{.SrcPackageName}}'
 recursive: false
 template: testify
 packages:
-  github.com/mblancoa/go-fun-events/core:
+  github.com/mblancoa/go-fun-events/pkg/core:
     config:
       all: true
 # Lots more config...

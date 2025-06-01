@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/validation"
-	"github.com/mblancoa/go-fun-events/core"
+	"github.com/mblancoa/go-fun-events/pkg/core"
 	"github.com/mblancoa/go-fun-events/tools"
 	"net/http"
 	"time"

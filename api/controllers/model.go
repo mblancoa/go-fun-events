@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/google/uuid"
-	"github.com/mblancoa/go-fun-events/core"
+	"github.com/mblancoa/go-fun-events/pkg/core"
 )
 
 const (

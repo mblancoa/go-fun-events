@@ -2,8 +2,8 @@ package mongodb_repository
 
 import (
 	"context"
-	"github.com/mblancoa/go-fun-events/core"
 	"github.com/mblancoa/go-fun-events/errors"
+	core2 "github.com/mblancoa/go-fun-events/pkg/core"
 	"github.com/mblancoa/go-fun-events/tools"
 	"github.com/rs/zerolog/log"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -21,7 +21,7 @@ type mongoDbConfiguration struct {
 func SetupMongodbRepositoryConfiguration() {
 	log.Info().Msg("Initializing mongodb repository configuration")
 	var config = &mongoDbConfiguration{}
-	tools.LoadYamlConfiguration(core.GetConfigFile(), config)
+	tools.LoadYamlConfiguration(core2.GetConfigFile(), config)
 
 	ctx := context.Background()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(config.Mongodb.Uri))
@@ -37,5 +37,5 @@ func setupRepositoryContext(database *mongo.Database) {
 	log.Info().Msg("Creating the mongodb repository context")
 
 	eventRepository := NewEventRepository(database.Collection(EventsCollection))
-	core.RepositoryContext.EventRepository = eventRepository
+	core2.RepositoryContext.EventRepository = eventRepository
 }

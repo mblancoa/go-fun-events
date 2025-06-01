@@ -9,7 +9,7 @@ import (
 )
 
 func init() {
-	err := os.Chdir("./..")
+	err := os.Chdir("./../..")
 	tools.ManageTestError(err)
 	err = os.Setenv(RunMode, "test")
 	tools.ManageTestError(err)
